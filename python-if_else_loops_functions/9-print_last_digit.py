@@ -9,5 +9,3 @@ def print_last_digit(number):
     print(last_digit)
     return last_digit
 
-
-print_last_digit(111)
