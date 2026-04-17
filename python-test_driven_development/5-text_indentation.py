@@ -1,22 +1,26 @@
 #!/usr/bin/python3
+"""Module that provides a text indentation function."""
+
+
 def text_indentation(text):
-    try:
-        if not isinstance(text, str):
-            raise TypeError("text must be a string")
-        else:
-            c = 0
-            while c < len(text) and text[c] == ' ':
-                c += 1
-            # Dont know what I did right here
-            while c < len(text):
-                print(text[c], end="")
-                if text[c] == "\n" or text[c] in ".?:":
-                    if text[c] in ".?:":
-                        print("\n")
-                    c += 1
-                    while c < len(text) and text[c] == ' ':
-                        c += 1
-                    continue
-                c += 1
-    except Exception as exc:
-        return (exc)
+    """Print text with two new lines after '.', '?' and ':'.
+
+    Args:
+        text (str): The input text.
+
+    Raises:
+        TypeError: If text is not a string.
+    """
+    if not isinstance(text, str):
+        raise TypeError("text must be a string")
+
+    i = 0
+    while i < len(text):
+        print(text[i], end="")
+        if text[i] in ".?:":
+            print("\n")
+            i += 1
+            while i < len(text) and text[i] == " ":
+                i += 1
+            continue
+        i += 1
