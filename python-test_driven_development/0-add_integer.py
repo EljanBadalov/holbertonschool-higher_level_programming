@@ -1,19 +1,19 @@
 #!/usr/bin/python3
-"""Module for adding two integers"""
+"""This module provides a function to add two integers."""
 
 
 def add_integer(a, b=98):
-    """Adds two integers a and b
+    """Add two integers.
 
     Args:
         a (int or float): first number
-        b (int or float): second number (default = 98)
+        b (int or float): second number (default is 98)
 
     Returns:
         int: sum of a and b
 
     Raises:
-        TypeError: if a or b is not int or float
+        TypeError: if a or b is not an integer or float
     """
 
     if not isinstance(a, (int, float)):
@@ -22,7 +22,12 @@ def add_integer(a, b=98):
     if not isinstance(b, (int, float)):
         raise TypeError("b must be an integer")
 
-    # Cast to int
+    if a != a:
+        raise ValueError("a cannot be NaN")
+
+    if b != b:
+        raise ValueError("b cannot be NaN")
+
     a = int(a)
     b = int(b)
 
