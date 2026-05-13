@@ -1,11 +1,16 @@
 #!/usr/bin/python3
-"""Lists all states from the database hbtn_0e_0_usa."""
+"""
+this is global enviroment
+"""
+
 
 import sys
 import MySQLdb
 
-
 if __name__ == "__main__":
+    """
+        this is local enviroment
+    """
     username = sys.argv[1]
     password = sys.argv[2]
     database = sys.argv[3]
@@ -15,13 +20,12 @@ if __name__ == "__main__":
         port=3306,
         user=username,
         passwd=password,
-        db=database,
-        charset="utf8"
+        db=database
     )
 
     cursor = db.cursor()
 
-    query = "SELECT * FROM states ORDER BY states.id ASC"
+    query = "SELECT * FROM states ORDER BY id ASC;"
     cursor.execute(query)
 
     states = cursor.fetchall()
@@ -31,4 +35,3 @@ if __name__ == "__main__":
 
     cursor.close()
     db.close()
-    
