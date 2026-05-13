@@ -1,37 +1,29 @@
 #!/usr/bin/python3
-"""
-this is global enviroment
-"""
 
-
-import sys
 import MySQLdb
+import sys
 
 if __name__ == "__main__":
-    """
-        this is local enviroment
-    """
     username = sys.argv[1]
     password = sys.argv[2]
-    database = sys.argv[3]
+    db_name = sys.argv[3]
 
     db = MySQLdb.connect(
         host="localhost",
         port=3306,
         user=username,
         passwd=password,
-        db=database
+        db=db_name
     )
 
     cursor = db.cursor()
 
-    query = "SELECT * FROM states ORDER BY id ASC;"
-    cursor.execute(query)
+    cursor.execute("SELECT * FROM states ORDER BY id ASC")
 
-    states = cursor.fetchall()
+    rows = cursor.fetchall()
 
-    for state in states:
-        print(state)
+    for row in rows:
+        print(row)
 
     cursor.close()
     db.close()
