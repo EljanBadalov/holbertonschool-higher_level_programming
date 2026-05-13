@@ -6,26 +6,23 @@ import MySQLdb
 
 
 if __name__ == "__main__":
-    username = sys.argv[1]
-    password = sys.argv[2]
-    database = sys.argv[3]
-
     db = MySQLdb.connect(
         host="localhost",
         port=3306,
-        user=username,
-        passwd=password,
-        db=database,
+        user=sys.argv[1],
+        passwd=sys.argv[2],
+        db=sys.argv[3],
         charset="utf8"
     )
 
-    cursor = db.cursor()
-    cursor.execute("SELECT * FROM states ORDER BY states.id ASC")
+    cur = db.cursor()
+    cur.execute("SELECT * FROM states ORDER BY states.id ASC")
 
-    states = cursor.fetchall()
+    rows = cur.fetchall()
 
-    for state in states:
-        print(state)
+    for row in rows:
+        print(row)
 
-    cursor.close()
+    cur.close()
     db.close()
+
