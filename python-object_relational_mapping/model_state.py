@@ -1,18 +1,20 @@
 #!/usr/bin/python3
-"""State model"""
+"""
+State model
+"""
 
 from sqlalchemy import Column, Integer, String
-from sqlalchemy.ext.declarative import declarative_base
-
-
-Base = declarative_base()
+from sqlalchemy.orm import relationship
+from base import Base
 
 
 class State(Base):
-    """State class"""
-
+    """
+    class
+    """
     __tablename__ = "states"
 
     id = Column(Integer, primary_key=True, nullable=False)
     name = Column(String(128), nullable=False)
 
+    cities = relationship("City", back_populates="state", cascade="all, delete")
