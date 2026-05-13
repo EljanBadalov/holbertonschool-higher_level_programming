@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""State model"""
+"""This module defines the State class and its database mapping."""
 
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
@@ -9,7 +9,7 @@ Base = declarative_base()
 
 
 class State(Base):
-    """State class"""
+    """This class represents a state in the states table."""
 
     __tablename__ = "states"
 
