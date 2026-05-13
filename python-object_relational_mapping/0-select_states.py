@@ -5,34 +5,33 @@ import sys
 
 
 if __name__ == "__main__":
-    # Get arguments from command line
-    username = sys.argv[1]
-    password = sys.argv[2]
-    database = sys.argv[3]
+    # Terminal arqumentlərini qəbul edirik
+    db_user = sys.argv[1]
+    db_password = sys.argv[2]
+    db_name = sys.argv[3]
 
-    # Connect to MySQL server
+    # Verilənlər bazasına qoşuluruq
     db = MySQLdb.connect(
         host="localhost",
         port=3306,
-        user=username,
-        passwd=password,
-        db=database
+        user=db_user,
+        passwd=db_password,
+        db=db_name
     )
 
-    # Create cursor object
+    # Kursor obyekti yaradırıq
     cursor = db.cursor()
 
-    # Execute SQL query
-    query = "SELECT * FROM states ORDER BY id ASC;"
-    cursor.execute(query)
+    # Sorğunu icra edirik (Sıralama vacibdir: ORDER BY id ASC)
+    cursor.execute("SELECT * FROM states ORDER BY id ASC")
 
-    # Fetch all results
-    states = cursor.fetchall()
+    # Bütün nəticələri alırıq
+    query_rows = cursor.fetchall()
 
-    # Print results in required format
-    for state in states:
-        print(state)
+    # Nəticələri çap edirik
+    for row in query_rows:
+        print(row)
 
-    # Close cursor and database connection
+    # Bağlantıları bağlayırıq
     cursor.close()
     db.close()
